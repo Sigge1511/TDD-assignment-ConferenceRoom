@@ -6,7 +6,8 @@ namespace TDD_assignment_ConferenceRoom
     {
         static void Main(string[] args)
         {
-            
+            var context = new Data.ConferenceDbContext();
+
         }
     }
 }
