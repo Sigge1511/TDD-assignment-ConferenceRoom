@@ -9,13 +9,21 @@ using TDD_assignment_ConferenceRoom.Models;
 
 namespace TDD_assignment_ConferenceRoom.Controllers
 {
-    internal class ReservationHandler
+    public class ReservationHandler
     {
-        ConferenceDbContext _confContext = new ConferenceDbContext();
-        RoomHandler _roomHandler = new RoomHandler();
+        
+        readonly RoomHandler _roomHandler = new RoomHandler();
+        private readonly ConferenceDbContext _confContext;
 
-        public ReservationHandler() { }
-
+        public ReservationHandler()
+        {
+            
+        }
+        public ReservationHandler(ConferenceDbContext confDbContext) 
+        { 
+            _confContext = confDbContext;
+        }
+        
 
         public void CreateReservation()
         {
@@ -67,17 +75,19 @@ namespace TDD_assignment_ConferenceRoom.Controllers
 
         }
 
-        public void SaveReservation (Reservation reservation) 
+        public bool SaveReservation (Reservation reservation) 
         {
             try
             {
                 _confContext.ReservationSet.Add(reservation);
                 _confContext.SaveChanges();
                 Console.WriteLine("Reservation successfully made.");
+                return true;
             }
             catch 
             {
                 Console.WriteLine("Something went wrong. Please try again");
+                return false;
             }
         }
     }

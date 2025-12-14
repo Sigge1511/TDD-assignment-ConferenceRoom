@@ -8,9 +8,9 @@ using TDD_assignment_ConferenceRoom.Models;
 
 namespace TDD_assignment_ConferenceRoom.Controllers
 {
-    internal class RoomHandler
+    public class RoomHandler
     {
-        ConferenceDbContext _confContext = new ConferenceDbContext();
+        readonly ConferenceDbContext _confContext = new ConferenceDbContext();
 
         public RoomHandler()
         {

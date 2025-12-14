@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace TDD_assignment_ConferenceRoom.Controllers
 {
-    internal class MenuService
+    public class MenuService
     {
-        ReservationHandler _resHandler = new ReservationHandler();
-        RoomHandler _roomHandler = new RoomHandler();
+        readonly ReservationHandler _resHandler = new ReservationHandler();
+        readonly RoomHandler _roomHandler = new RoomHandler();
 
         public MenuService(){   }
 
