@@ -15,7 +15,10 @@ namespace TDD_assignment_ConferenceRoom.Controllers
         public RoomHandler()
         {
         }
-
+        public RoomHandler(ConferenceDbContext confDbContext)
+        {
+            _confContext = confDbContext;
+        }
 
         public bool CheckRoomAvailability(int roomId,DateTime start, DateTime end) 
         { 

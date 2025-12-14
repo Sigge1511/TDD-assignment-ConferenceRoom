@@ -20,7 +20,7 @@ namespace TDD_assignment_ConferenceRoom.Models
         [NotMapped]
         public Room? ChosenRoom { get; set; }
 
-        public virtual List<Room>? Rooms { get; set; }
+        //public virtual List<Room>? Rooms { get; set; }
 
     }
 }

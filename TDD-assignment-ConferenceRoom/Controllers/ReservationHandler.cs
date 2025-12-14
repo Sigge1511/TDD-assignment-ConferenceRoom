@@ -13,17 +13,13 @@ namespace TDD_assignment_ConferenceRoom.Controllers
     {
         
         readonly RoomHandler _roomHandler = new RoomHandler();
-        private readonly ConferenceDbContext _confContext;
+        readonly ConferenceDbContext _confContext =new ConferenceDbContext();
 
-        public ReservationHandler()
-        {
-            
-        }
+        public ReservationHandler(){}
         public ReservationHandler(ConferenceDbContext confDbContext) 
         { 
             _confContext = confDbContext;
-        }
-        
+        }        
 
         public void CreateReservation()
         {
@@ -65,16 +61,7 @@ namespace TDD_assignment_ConferenceRoom.Controllers
                 Console.WriteLine("\nPress any key to continue.");
                 Console.ReadKey();
             }
-
-
-
-            //public void CancelReservation() { }
-            //public void UpdateReservation() { }
-            //public void GetAllReservations() { }
-
-
         }
-
         public bool SaveReservation (Reservation reservation) 
         {
             try
@@ -89,6 +76,24 @@ namespace TDD_assignment_ConferenceRoom.Controllers
                 Console.WriteLine("Something went wrong. Please try again");
                 return false;
             }
+        }
+        public void PrintAllReservations()
+        {
+            var reservations = _confContext.ReservationSet.ToList();
+            foreach (var reservation in reservations)
+            {
+                var person = _confContext.PersonSet.FirstOrDefault(p => p.Id == reservation.PersonId);
+                var room = _confContext.RoomSet.FirstOrDefault(r => r.Id == reservation.RoomId);
+                var starttime = reservation.StartTime.ToString("dddd d MMM kl. HH:mm");
+                var endtime = reservation.EndTime.ToString("dddd d MMM kl. HH:mm");
+
+                Console.WriteLine($"* Room: {room.Name}, \nReserved by: {person.Name}, " +
+                    $"\nStarts: {starttime},\n" +
+                    $"Ends: {endtime},\n" +
+                    $"Capacity: {room.Capacity} people.\n\n");
+            }
+
+            
         }
     }
 }

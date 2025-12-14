@@ -47,7 +47,8 @@ namespace TDD_assignment_ConferenceRoom.Controllers
             Console.Clear();
             Console.WriteLine("Reservation Management");
             Console.WriteLine("1. Create Reservation");
-            Console.WriteLine("2. Back to Main Menu");
+            Console.WriteLine("2. View All Reservations");
+            Console.WriteLine("3. Back to Main Menu");
             Console.Write("Select an option: ");
 
             int choice = GetUserChoice();
@@ -126,6 +127,12 @@ namespace TDD_assignment_ConferenceRoom.Controllers
                     _resHandler.CreateReservation();
                     break;
                 case 2:
+                    Console.Clear();
+                    _resHandler.PrintAllReservations();
+                    Console.WriteLine("\nPress any key to continue.");
+                    Console.ReadKey();
+                    break;
+                case 3:
                     ShowMainMenu();
                     break;
                 default:

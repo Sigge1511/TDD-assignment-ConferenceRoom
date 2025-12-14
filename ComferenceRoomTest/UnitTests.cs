@@ -1,7 +1,7 @@
 ﻿using TDD_assignment_ConferenceRoom.Controllers;
 using TDD_assignment_ConferenceRoom.Models;
 
-namespace ComferenceRoomTest
+namespace ConferenceRoom.Test
 {
     public class UnitTests
     {
@@ -50,7 +50,7 @@ namespace ComferenceRoomTest
             };
 
             // Act
-            bool success =reservationHandler.SaveReservation(resToTest);
+            bool success = reservationHandler.SaveReservation(resToTest);
 
             // Assert
             Assert.False(success);
