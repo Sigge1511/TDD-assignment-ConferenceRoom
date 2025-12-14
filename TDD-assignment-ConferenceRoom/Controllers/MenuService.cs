@@ -8,8 +8,8 @@ namespace TDD_assignment_ConferenceRoom.Controllers
 {
     internal class MenuService
     {
-        private readonly ReservationHandler _resHandler;
-        private readonly RoomHandler _roomHandler;
+        ReservationHandler _resHandler = new ReservationHandler();
+        RoomHandler _roomHandler = new RoomHandler();
 
         public MenuService(){   }
 
@@ -51,6 +51,7 @@ namespace TDD_assignment_ConferenceRoom.Controllers
             Console.Write("Select an option: ");
 
             int choice = GetUserChoice();
+            MenuReservationSwitch(choice);
 
         }
         public int GetUserChoice()

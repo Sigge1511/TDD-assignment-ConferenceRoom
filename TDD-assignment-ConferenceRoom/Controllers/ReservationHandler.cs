@@ -11,8 +11,8 @@ namespace TDD_assignment_ConferenceRoom.Controllers
 {
     internal class ReservationHandler
     {
-        private readonly ConferenceDbContext _confContext;
-        private readonly RoomHandler _roomHandler;
+        ConferenceDbContext _confContext = new ConferenceDbContext();
+        RoomHandler _roomHandler = new RoomHandler();
 
         public ReservationHandler() { }
 
@@ -48,10 +48,14 @@ namespace TDD_assignment_ConferenceRoom.Controllers
                     EndTime = endDateTime
                 };
                 SaveReservation(newReservation);
+                Console.WriteLine("\nPress any key to continue.");
+                Console.ReadKey();
             }
             else
             {
                 Console.WriteLine("The selected room is not available for the chosen time slot.");
+                Console.WriteLine("\nPress any key to continue.");
+                Console.ReadKey();
             }
 
 
@@ -65,8 +69,16 @@ namespace TDD_assignment_ConferenceRoom.Controllers
 
         public void SaveReservation (Reservation reservation) 
         {
-            _confContext.ReservationSet.Add(reservation);
-            _confContext.SaveChanges();
+            try
+            {
+                _confContext.ReservationSet.Add(reservation);
+                _confContext.SaveChanges();
+                Console.WriteLine("Reservation successfully made.");
+            }
+            catch 
+            {
+                Console.WriteLine("Something went wrong. Please try again");
+            }
         }
     }
 }

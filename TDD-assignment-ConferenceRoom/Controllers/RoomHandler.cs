@@ -10,11 +10,10 @@ namespace TDD_assignment_ConferenceRoom.Controllers
 {
     internal class RoomHandler
     {
-        private readonly ConferenceDbContext _confContext;
+        ConferenceDbContext _confContext = new ConferenceDbContext();
 
-        public RoomHandler(ConferenceDbContext confContext)
+        public RoomHandler()
         {
-            _confContext = confContext;
         }
 
 
