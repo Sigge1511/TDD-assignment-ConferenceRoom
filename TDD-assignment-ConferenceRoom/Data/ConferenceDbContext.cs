@@ -11,6 +11,7 @@ namespace TDD_assignment_ConferenceRoom.Data
     {
         public DbSet<Room> RoomSet { get; set; } = default!;
         public DbSet<Reservation> ReservationSet { get; set; } = default!;
+        public DbSet<Person> PersonSet { get; set; } = default!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {            optionsBuilder.UseSqlServer(new ConfigurationBuilder()

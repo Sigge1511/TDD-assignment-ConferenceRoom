@@ -15,6 +15,7 @@ namespace TDD_assignment_ConferenceRoom.Models
         public required DateTime StartTime { get; set; }
         public required DateTime EndTime { get; set; }
         public required int RoomId { get; set; }
+        public required int PersonId { get; set; }
 
         [NotMapped]
         public Room? ChosenRoom { get; set; }

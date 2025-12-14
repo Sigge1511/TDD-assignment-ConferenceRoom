@@ -18,13 +18,57 @@ namespace TDD_assignment_ConferenceRoom.Controllers
         }
 
 
-        public async Task<bool> CheckRoomAvailability(int roomId) 
+        public bool CheckRoomAvailability(int roomId,DateTime start, DateTime end) 
         { 
-        
-        
-            return true;
+            bool isAvailable = true;
+            var reservations = _confContext.ReservationSet.Where(r => r.RoomId == roomId).ToList();
+            foreach (var reservation in reservations)
+            {
+                if (start < reservation.EndTime && end > reservation.StartTime)
+                {
+                    isAvailable = false;
+                    break;
+                }
+            }
+            return isAvailable;
         }
-        public void GetRoomById() { }
+
+        public bool IsAvailableNow(int roomId) 
+        { 
+            bool availableNow = true;
+            var reservations = _confContext.ReservationSet.Where(r => r.RoomId == roomId).ToList();
+            DateTime now = DateTime.Now;
+            DateTime in1Hour = now.AddHours(1);
+
+            foreach (var reservation in reservations)
+            {
+                if (now < reservation.EndTime && in1Hour > reservation.StartTime)
+                {
+                    availableNow = false;
+                    break;
+                }
+            }
+            return availableNow;
+        }
+
+
+        public void PrintAllRoomsAsync()
+        {
+            foreach (var room in _confContext.RoomSet)
+            {
+                Console.WriteLine($"Room ID: {room.Id}, Name: {room.Name}, Capacity: {room.Capacity}.");
+            }
+
+            return; 
+        }
+
+
+
+        public Room GetRoomById(int id) 
+        { 
+            var room = _confContext.RoomSet.Find(id);
+            return room!;
+        }
         public void GetAvailableRooms() { }
         public void AddRoom()
         {
