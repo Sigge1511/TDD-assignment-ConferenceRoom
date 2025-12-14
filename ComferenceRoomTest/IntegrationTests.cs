@@ -2,9 +2,6 @@
 using TDD_assignment_ConferenceRoom.Controllers;
 using TDD_assignment_ConferenceRoom.Data;
 using TDD_assignment_ConferenceRoom.Models;
-{
-    
-}
 
 namespace ComferenceRoomTest
 {
