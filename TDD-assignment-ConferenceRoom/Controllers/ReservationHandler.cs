@@ -79,7 +79,7 @@ namespace TDD_assignment_ConferenceRoom.Controllers
         }
         public void PrintAllReservations()
         {
-            var reservations = _confContext.ReservationSet.ToList();
+            var reservations = GetAllReservationsToList();
             foreach (var reservation in reservations)
             {
                 var person = _confContext.PersonSet.FirstOrDefault(p => p.Id == reservation.PersonId);
@@ -91,9 +91,13 @@ namespace TDD_assignment_ConferenceRoom.Controllers
                     $"\nStarts: {starttime},\n" +
                     $"Ends: {endtime},\n" +
                     $"Capacity: {room.Capacity} people.\n\n");
-            }
+            }            
+        }
 
-            
+        public List<Reservation> GetAllReservationsToList()
+        {
+            return _confContext.ReservationSet.ToList();
         }
     }
+
 }

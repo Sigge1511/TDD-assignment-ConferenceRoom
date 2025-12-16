@@ -34,9 +34,8 @@ namespace TDD_assignment_ConferenceRoom.Controllers
         {
             Console.Clear();
             Console.WriteLine("Room Management");
-            Console.WriteLine("1. Add Room");
-            Console.WriteLine("2. Check if a room is available the coming hour.");
-            Console.WriteLine("3. Back to Main Menu");
+            Console.WriteLine("1. Check if a room is available the coming hour.");
+            Console.WriteLine("2. Back to Main Menu");
             Console.Write("Select an option: ");
 
             int choice = GetUserChoice();
@@ -89,14 +88,17 @@ namespace TDD_assignment_ConferenceRoom.Controllers
             Console.Clear();
             switch (choice)
             {
-                case 1:
-                    _roomHandler.AddRoom();
-                    break;
+                //case 1:
+                //    _roomHandler.AddRoom();
+                //    break;
                 case 2:
                     Console.WriteLine("Enter the Room ID to check availability:");
                     _roomHandler.PrintAllRoomsAsync();
                     int roomId = int.Parse(Console.ReadLine() ?? "0");
-                    bool isAvailable = _roomHandler.IsAvailableNow(roomId);
+
+                    var reservationInfoList = _resHandler.GetAllReservationsToList();
+                    bool isAvailable = _roomHandler.IsAvailableNow(reservationInfoList, roomId);
+
                     if (isAvailable)
                     {
                         Console.WriteLine("The room is available for the coming hour.");
