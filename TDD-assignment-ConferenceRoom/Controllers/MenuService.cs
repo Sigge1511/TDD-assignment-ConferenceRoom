@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TDD_assignment_ConferenceRoom.Models;
 
 namespace TDD_assignment_ConferenceRoom.Controllers
 {
@@ -126,7 +127,10 @@ namespace TDD_assignment_ConferenceRoom.Controllers
             switch (choice)
             {
                 case 1:
-                    _resHandler.CreateReservation();
+                    var reservationInfoList = _resHandler.GetAllReservationsToList();
+                    _resHandler.CreateReservation(reservationInfoList);
+                    Console.WriteLine("\nPress any key to continue.");
+                    Console.ReadKey();
                     break;
                 case 2:
                     Console.Clear();

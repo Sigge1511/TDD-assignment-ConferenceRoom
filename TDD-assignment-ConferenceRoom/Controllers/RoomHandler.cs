@@ -22,11 +22,11 @@ namespace TDD_assignment_ConferenceRoom.Controllers
 
 
 
-        public bool CheckRoomAvailability(int roomId, DateTime start, DateTime end)
+        public bool CheckRoomAvailability(List<Reservation> resList, int roomId, DateTime start, DateTime end)
         {
             bool isAvailable = true;
-            var reservations = _confContext.ReservationSet.Where(r => r.RoomId == roomId).ToList();
-            foreach (var reservation in reservations)
+            //var reservations = _confContext.ReservationSet.Where(r => r.RoomId == roomId).ToList();
+            foreach (var reservation in resList)
             {
                 if (start < reservation.EndTime && end > reservation.StartTime)
                 {

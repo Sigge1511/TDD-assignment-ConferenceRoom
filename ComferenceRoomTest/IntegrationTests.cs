@@ -67,6 +67,8 @@ namespace ConferenceRoom.Test
             //Spara den befintliga bokningen i "databasen"
             testContext.ReservationSet.Add(existingReservation);
             testContext.SaveChanges();
+            List<Reservation> reservationsInDb = testContext.ReservationSet.ToList();
+
 
             //Fixa en "ny" bokning som jag kan testa sedan         
             Reservation reservationToCheck = new Reservation
@@ -79,7 +81,8 @@ namespace ConferenceRoom.Test
             
 
             // Act
-            bool isAvailable = roomHandler.CheckRoomAvailability(reservationToCheck.RoomId, 
+            bool isAvailable = roomHandler.CheckRoomAvailability(reservationsInDb, 
+                                                                 reservationToCheck.RoomId, 
                                                                  reservationToCheck.StartTime, 
                                                                  reservationToCheck.EndTime);
 

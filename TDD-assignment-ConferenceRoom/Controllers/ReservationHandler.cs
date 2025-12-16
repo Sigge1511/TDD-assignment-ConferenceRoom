@@ -19,9 +19,12 @@ namespace TDD_assignment_ConferenceRoom.Controllers
         public ReservationHandler(ConferenceDbContext confDbContext) 
         { 
             _confContext = confDbContext;
-        }        
+        }
 
-        public void CreateReservation()
+
+        //Ta in en lista med alla reservations
+        //mha hjälpmetod för att kunna köra automatiska tester
+        public void CreateReservation(List<Reservation> resList)
         {
             _roomHandler.PrintAllRoomsAsync();
             Console.WriteLine("\nSelect a room by writing its id:");
@@ -40,7 +43,7 @@ namespace TDD_assignment_ConferenceRoom.Controllers
             Console.WriteLine("\nWrite the reservation end date and time (yyyy-MM-dd HH:mm):");
             DateTime endDateTime = DateTime.Parse(Console.ReadLine() ?? "");
 
-            bool isAvailable = _roomHandler.CheckRoomAvailability(selectedRoomId, startDateTime, endDateTime);
+            bool isAvailable = _roomHandler.CheckRoomAvailability(resList, selectedRoomId, startDateTime, endDateTime);
             if (isAvailable)
             {
                 var newReservation = new Reservation
@@ -51,15 +54,11 @@ namespace TDD_assignment_ConferenceRoom.Controllers
                     StartTime = startDateTime,
                     EndTime = endDateTime
                 };
-                SaveReservation(newReservation);
-                Console.WriteLine("\nPress any key to continue.");
-                Console.ReadKey();
+                SaveReservation(newReservation);                
             }
             else
             {
                 Console.WriteLine("The selected room is not available for the chosen time slot.");
-                Console.WriteLine("\nPress any key to continue.");
-                Console.ReadKey();
             }
         }
         public bool SaveReservation (Reservation reservation) 
