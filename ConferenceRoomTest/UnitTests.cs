@@ -92,9 +92,9 @@ namespace ConferenceRoom.Test
 
         //Detta ska vara ett enhetstest nu tror jag :)
         [Theory]
-        // Fall 1: En bokning som INTE krockar (ska bli true)
+        // 1: En bokning som INTE krockar
         [InlineData("2025-10-18 08:00", "2025-10-18 15:00", true)]
-        // Fall 2: En bokning som krockar mitt i (ska bli false)
+        // 2: En bokning som SKA krocka 
         [InlineData("2025-12-18 08:00", "2025-12-18 09:30", false)]
         public void CheckRoomAvailabilityTest(string startStr, string endStr, bool expectedResult)
         {
